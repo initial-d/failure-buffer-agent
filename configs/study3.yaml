@@ -1,0 +1,7 @@
+study: study3_pilot
+seed: 20261003
+domains: [software, agent_tool, finance]
+instances_per_domain: 30
+temperature: 0.0
+workers: 24
+models: [deepseek-v4.1-flash, gemini-2.5-flash]

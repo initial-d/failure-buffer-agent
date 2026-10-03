@@ -1,0 +1,61 @@
+base_url: null   # set FBA_BASE_URL in the environment (any OpenAI-compatible endpoint)
+models:
+  deepseek-v4.1-flash:
+    id: deepseek/deepseek-v4.1-flash
+    family: deepseek
+    max_tokens: 2000
+    # thinking mode spends >8k tokens hand-computing Beta quantiles; pilot uses non-thinking mode
+    extra_body: {thinking: {type: disabled}}
+  gemini-2.5-flash:
+    id: google/gemini-2.5-flash
+    family: google
+    max_tokens: 8000
+    timeout: 90   # upstream occasionally hangs; successful calls take <30s
+  gpt-5.6-terra:
+    id: openai/gpt-5.6-terra
+    family: openai
+    max_tokens: 4000
+    timeout: 120
+  gpt-4o-mini:
+    id: openai/gpt-4o-mini
+    family: openai
+    max_tokens: 1000
+    timeout: 90
+  claude-sonnet-5:
+    id: anthropic/claude-sonnet-5
+    family: anthropic
+    max_tokens: 8000
+    timeout: 120
+    extra_body: {top_p: null}   # this model rejects top_p
+  qwen3.5-27b:          # open-weight; thinking disabled; returns token logprobs
+    id: qwen/qwen3.5-27b
+    family: qwen
+    max_tokens: 1000
+    timeout: 120
+    extra_body: {thinking: {type: disabled}}
+  glm-5.3:
+    id: z-ai/glm-5.3
+    family: zhipu
+    max_tokens: 16000
+    timeout: 180
+  kimi-k3:
+    id: moonshotai/kimi-k3
+    family: moonshot
+    max_tokens: 8000
+    timeout: 180
+  # Same weights as above with deliberation switched ON: within-model test of the reasoning moderator.
+  qwen3.5-27b-think:
+    id: qwen/qwen3.5-27b
+    family: qwen
+    max_tokens: 16000
+    timeout: 300
+  deepseek-v4.1-flash-think:
+    id: deepseek/deepseek-v4.1-flash
+    family: deepseek
+    max_tokens: 16000
+    timeout: 300
+  qwen-turbo:            # cheapest tier (no reasoning tokens, ~1 s per call)
+    id: qwen/qwen-turbo
+    family: qwen
+    max_tokens: 600
+    timeout: 90

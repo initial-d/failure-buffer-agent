@@ -1,0 +1,8 @@
+study: study1_pilot
+seed: 20261002
+domains: [finance, software, database, science, agent_tool]
+instances_per_domain: 20
+control_ambiguity: [sparse, qualitative]
+temperature: 0.0
+workers: 16
+models: [deepseek-v4.1-flash, gemini-2.5-flash]

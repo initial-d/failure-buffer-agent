@@ -1,0 +1,8 @@
+study: representation
+seed: 20261003
+domains: [finance, software, database, science, agent_tool]
+instances_per_domain: 20
+control_ambiguity: [sparse]
+temperature: 0.0
+workers: 64
+models: [gpt-4o-mini, qwen3.5-27b, deepseek-v4.1-flash, gemini-2.5-flash]
