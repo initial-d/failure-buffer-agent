@@ -39,8 +39,7 @@ tar -xzf failure-buffer-agent-data.tar.gz   # creates data/generated/ and result
 
 When a model was served through more than one backend, `model_version` records an anonymised backend label
 (`backend-1/<model>`, `backend-2/<model>`, ...), which is what the backend-heterogeneity analysis groups by.
-With the archive unpacked, every `analyze_*` script runs without issuing API calls, because each request key
-is already in the cache.
+With the archive unpacked, the `analyze_*` scripts read only these files and issue no API calls.
 
 ## Setup
 
