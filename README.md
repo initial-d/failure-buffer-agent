@@ -18,6 +18,30 @@ tests/             invariants of the paired design (prompts differ only in the m
 configs/           model list and study settings
 ```
 
+## Data
+
+The generated prompt sets and all raw model responses are published as a release asset:
+[`failure-buffer-agent-data.tar.gz`](https://github.com/initial-d/failure-buffer-agent/releases/tag/data-v1)
+(52 MB; SHA-256 `73687b7bcdaa42ad569e86f5017b92fc8cf8b75b902f257145677461bfe22adc`).
+Unpack it in the repository root:
+
+```bash
+curl -LO https://github.com/initial-d/failure-buffer-agent/releases/download/data-v1/failure-buffer-agent-data.tar.gz
+tar -xzf failure-buffer-agent-data.tar.gz   # creates data/generated/ and results/{raw,processed,statistics}/
+```
+
+| Path | Contents |
+|---|---|
+| `data/generated/<study>/` | prompt sets (one JSONL record per condition) |
+| `results/raw/<study>/<model>.jsonl` | one record per model call: request key, prompt hash, model, decoding parameters, raw text, reasoning text where returned, parsed output, finish reason, latency, token usage |
+| `results/processed/` | flattened response tables |
+| `results/statistics/` | paired contrasts, intervals and tests produced by `scripts/analyze_*` |
+
+When a model was served through more than one backend, `model_version` records an anonymised backend label
+(`backend-1/<model>`, `backend-2/<model>`, ...), which is what the backend-heterogeneity analysis groups by.
+With the archive unpacked, every `analyze_*` script runs without issuing API calls, because each request key
+is already in the cache.
+
 ## Setup
 
 ```bash
